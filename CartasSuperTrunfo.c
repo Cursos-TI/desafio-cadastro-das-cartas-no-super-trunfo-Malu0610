@@ -14,7 +14,7 @@ int main() {
     char cod_carta1[3];
     char estado1[20];
     char nome_cidade1[20];
-    int populacao1;
+    unsigned long int populacao1;
     float area1;
     float PIB1;
     int num_pontos_turisticos1;
@@ -23,10 +23,13 @@ int main() {
     char cod_carta2[3];
     char estado2[20];
     char nome_cidade2[20];
-    int populacao2;
+    unsigned long int populacao2;
     float area2;
     float PIB2;
     int num_pontos_turisticos2;
+
+    //DECLARAÇÃO DE VÁRIAVEIS PARA COMPARARÇÃO
+    float SuperPoderC1, SuperPoderC2;
     
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
@@ -34,16 +37,16 @@ int main() {
     
     //CARTA 1
     printf("Digite o código da carta: ");
-    scanf("%s", &cod_carta1);
+    scanf("%s", cod_carta1);
 
     printf("Digite o Estado: ");
-    scanf("%s", &estado1);
+    scanf("%s", estado1);
 
     printf("Digite o nome da cidade: ");
-    scanf("%s", &nome_cidade1);
+    scanf("%s", nome_cidade1);
 
     printf("Digite a população: ");
-    scanf("%d", &populacao1);
+    scanf("%lu", &populacao1);
 
     printf("Digite a área: ");
     scanf("%f", &area1);
@@ -57,16 +60,16 @@ int main() {
     printf("\n\n"); //ESPAÇO ENTRE AS DECLARAÇÕES DE DADOS
     //CARTA 2
     printf("Digite o código da carta: ");
-    scanf("%s", &cod_carta2);
+    scanf("%s", cod_carta2);
 
     printf("Digite o Estado: ");
-    scanf("%s", &estado2);
+    scanf("%s", estado2);
 
     printf("Digite o nome da cidade: ");
-    scanf("%s", &nome_cidade2);
+    scanf("%s", nome_cidade2);
 
     printf("Digite a população: ");
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
 
     printf("Digite a área: ");
     scanf("%f", &area2);
@@ -85,7 +88,7 @@ int main() {
     printf("Código da carta: %s", cod_carta1);
     printf("Estado: %s", estado1);
     printf("Cidade: %s", nome_cidade1);
-    printf("População: %d", populacao1);
+    printf("População: %lu", populacao1);
     printf("Área: %f km", area1);
     printf("PIB: %.2f", PIB1);
     printf("Número de pontos turísticos: %d", num_pontos_turisticos1);
@@ -93,10 +96,10 @@ int main() {
     printf("\n\n"); //ESPAÇO ENTRE AS DECLARAÇÕES DE DADOS
 
     //EXIBIÇÃO CARTA 2
-    printf("Código da carta: %d \n", cod_carta2);
+    printf("Código da carta: %s \n", cod_carta2);
     printf("Estado: %s  \n", estado2);
     printf("Cidade: %s  \n", nome_cidade2);
-    printf("População: %d \n", populacao2);
+    printf("População: %lu \n", populacao2);
     printf("Área: %f km \n", area2);
     printf("PIB: %.2f \n", PIB2);
     printf("Número de pontos turísticos: %d\n\n", num_pontos_turisticos2);
@@ -121,6 +124,28 @@ int main() {
 
     printf("Densidade populacional da cidade %s = %.2f\n", nome_cidade2, densidade_populacional_cidade2);
     printf("PIB per capita da cidade %s = %.2f\n\n", nome_cidade2, pib_per_capita2);
+
+    //SOMA DOS VALORES CARTAS
+    SuperPoderC1 = (float)(populacao1 + area1 + num_pontos_turisticos1 + PIB1 + pib_per_capita1 + (1/densidade_populacional_cidade1));
+
+    SuperPoderC2 = (float)(populacao2 + area2 + num_pontos_turisticos2 + PIB2 + pib_per_capita2 + (1/densidade_populacional_cidade2));
+
+
+    //COMPARAÇÃO DAS CARTAS
+    printf("\n********************************\n");
+    printf("      Comparação de Cartas      \n");
+    printf("********************************\n");
+
+
+    printf("| SIGNIFICADO DOS VALORES |\n| Carta 1 vencedora = 1   |\n| Carta 2 vencedora = 0   |\n");
+
+    printf("População: Carta %d venceu\n", populacao1 > populacao2);
+    printf("Área: Carta %d venceu\n", area1 > area2);
+    printf("PIB: Carta %d venceu\n", PIB1 > PIB2);
+    printf("Pontos Turísticos: Carta %d venceu\n", num_pontos_turisticos1 > num_pontos_turisticos2);
+    printf("Densidade Populacional: Carta %d venceu\n", (1/densidade_populacional_cidade1) > (1/densidade_populacional_cidade2));
+    printf("PIB per Capita: Carta %d venceu\n", pib_per_capita1 > pib_per_capita2);
+    printf("Super Poder: Carta %d venceu\n", SuperPoderC1 > SuperPoderC2);
 
 
     return 0;
